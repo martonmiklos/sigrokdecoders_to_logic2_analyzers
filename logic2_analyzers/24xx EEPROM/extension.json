@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "24xx EEPROM",
+    "extensions": {
+        "24xx EEPROM": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.24xx_EEPROM"
+        }
+    }
+}

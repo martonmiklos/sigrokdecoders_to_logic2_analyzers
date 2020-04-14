@@ -1,0 +1,3 @@
+[submodule "libsigrokdecode"]
+	path = libsigrokdecode
+	url = https://github.com/sigrokproject/libsigrokdecode

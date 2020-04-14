@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "AD5626",
+    "extensions": {
+        "AD5626": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.AD5626"
+        }
+    }
+}

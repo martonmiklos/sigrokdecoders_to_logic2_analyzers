@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "X2444M_P",
+    "extensions": {
+        "X2444M_P": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.X2444M_P"
+        }
+    }
+}

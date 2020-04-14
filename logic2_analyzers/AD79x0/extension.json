@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "AD79x0",
+    "extensions": {
+        "AD79x0": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.AD79x0"
+        }
+    }
+}

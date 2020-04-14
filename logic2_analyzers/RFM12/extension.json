@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "RFM12",
+    "extensions": {
+        "RFM12": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.RFM12"
+        }
+    }
+}

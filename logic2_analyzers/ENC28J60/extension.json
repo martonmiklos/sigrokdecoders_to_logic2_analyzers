@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "ENC28J60",
+    "extensions": {
+        "ENC28J60": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.ENC28J60"
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "PCA9571",
+    "extensions": {
+        "PCA9571": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.PCA9571"
+        }
+    }
+}

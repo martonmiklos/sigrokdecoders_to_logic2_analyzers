@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "MXC6225XU",
+    "extensions": {
+        "MXC6225XU": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.MXC6225XU"
+        }
+    }
+}

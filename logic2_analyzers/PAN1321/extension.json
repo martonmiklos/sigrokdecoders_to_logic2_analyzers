@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "PAN1321",
+    "extensions": {
+        "PAN1321": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.PAN1321"
+        }
+    }
+}

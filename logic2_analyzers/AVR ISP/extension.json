@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "AVR ISP",
+    "extensions": {
+        "AVR ISP": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.AVR_ISP"
+        }
+    }
+}

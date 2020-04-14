@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "Amulet ASCII",
+    "extensions": {
+        "Amulet ASCII": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.Amulet_ASCII"
+        }
+    }
+}
