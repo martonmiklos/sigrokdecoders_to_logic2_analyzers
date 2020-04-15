@@ -16,6 +16,7 @@ def generateDecoderWrapper(decoder, type, outputDir, sourcefile):
 
     if (not name == "") :
         name = name.replace("/", "_")
+        name = name.replace("²", "2") # wah fancy I2C naming...
         print("generating " + name)
         decoderDir = os.path.join(outputDir, name)
         if (not os.path.isdir(decoderDir)) :
@@ -23,6 +24,8 @@ def generateDecoderWrapper(decoder, type, outputDir, sourcefile):
 
         # generate extension.json
         entryPointName = name.replace(" ", "_")
+        if (entryPointName[0].isnumeric()) :
+            entryPointName = "_" + entryPointName
         jsonData = {
           "version": "0.0.1",
           "apiVersion": "1.0.0",
@@ -38,12 +41,19 @@ def generateDecoderWrapper(decoder, type, outputDir, sourcefile):
         with open(os.path.join(decoderDir, "extension.json"), 'w') as outfile:
             json.dump(jsonData, outfile, indent=4)
 
-        # copy over the sigrok analyzer
+        # copy over the sigrok analyzer and other python files not __init__.py
         shutil.copyfile(sourcefile, os.path.join(decoderDir, os.path.basename(sourcefile)))
+        sigrokDir = os.path.dirname(sourcefile)
+        for r, d, f in os.walk(sigrokDir):
+            for file in f:
+                if (".py" in file):
+                    shutil.copyfile(os.path.join(sigrokDir, file), os.path.join(decoderDir, file))
+
 
         # generate the wrapper python class
         with open('hla_template.j2') as file_:
-            template = Template(file_.read())
+            data = file_.read()
+            template = Template(data)
 
         with open(os.path.join(decoderDir, "Hla.py"), 'w') as hlapy:
             hlapy.write(template.render(

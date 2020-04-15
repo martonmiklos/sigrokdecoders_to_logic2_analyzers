@@ -6,7 +6,7 @@
     "extensions": {
         "24xx EEPROM": {
             "type": "HighLevelAnalyzer",
-            "entryPoint": "Hla.24xx_EEPROM"
+            "entryPoint": "Hla._24xx_EEPROM"
         }
     }
 }

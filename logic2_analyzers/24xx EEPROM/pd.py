@@ -18,7 +18,7 @@
 ##
 
 import sigrokdecode as srd
-from .lists import *
+from lists import *
 
 class Decoder(srd.Decoder):
     api_version = 3

@@ -2,11 +2,11 @@
     "version": "0.0.1",
     "apiVersion": "1.0.0",
     "author": "sigrok2logic converter",
-    "name": "I\u00b2C filter",
+    "name": "I2C demux",
     "extensions": {
-        "I\u00b2C filter": {
+        "I2C demux": {
             "type": "HighLevelAnalyzer",
-            "entryPoint": "Hla.I\u00b2C_filter"
+            "entryPoint": "Hla.I2C_demux"
         }
     }
 }
