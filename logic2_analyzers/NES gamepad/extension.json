@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "NES gamepad",
+    "extensions": {
+        "NES gamepad": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.NES_gamepad"
+        }
+    }
+}

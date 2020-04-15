@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "LTC242x",
+    "extensions": {
+        "LTC242x": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.LTC242x"
+        }
+    }
+}

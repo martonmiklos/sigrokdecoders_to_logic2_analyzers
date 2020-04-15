@@ -8,7 +8,11 @@ class SD_card_(SPI_mode)():
     pass
 
   def get_capabilities(self):
-    pass
+    return {
+      "result_types": {
+          
+      }
+    }
 
   def set_settings(self, settings):
     pass

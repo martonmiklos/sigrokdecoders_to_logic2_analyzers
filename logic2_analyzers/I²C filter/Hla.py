@@ -8,7 +8,11 @@ class I²C_filter():
     pass
 
   def get_capabilities(self):
-    pass
+    return {
+      "result_types": {
+          
+      }
+    }
 
   def set_settings(self, settings):
     pass

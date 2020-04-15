@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "ADNS-5020",
+    "extensions": {
+        "ADNS-5020": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.ADNS-5020"
+        }
+    }
+}

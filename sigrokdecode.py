@@ -23,21 +23,21 @@ class Decoder :
         pass
     
     def start(self):
-        self.packet = {}
+        self.packets = []
 
     def reset(self):
-        self.packet = {}
+        self.packets = []
 
     def metadata(self, key, value):
         pass
     
     def put(self, ss, es, output_type, data):
-        self.packet = {
+        self.packets.append({
                 "output_type": output_type,
                 "ss": ss,
                 "es": es,
                 "data": data
-        }
+        })
 
     def processLogicDataSPI(self, logicData):
         sigrokData = [
@@ -77,13 +77,22 @@ class Decoder :
 
 
     def generate_logic_result(self):
-        return {
-            "type": "i2c",
-            "start_time": self.packet.ss,
-            "end_time":  self.packet.es,
-            "data": {
-                "address": 17,
-                "data": "0x17, 0x23, 0xFA",
-                "count": 3
-            }
-        }
+        if (len(self.packets) == 0) :
+            pass
+
+        ret = []
+        for packet in self.packets:
+            typeString = ""
+            if (packet.type == self.OUTPUT_ANN) :
+                ret.append({
+                    "type": self.annotations[packet.data[0]],
+                    "start_time": packet.ss,
+                    "end_time":  packet.es,
+                    "data": {
+                        "data": packet.data[1],
+                    }
+                })
+        self.packets = []
+        if (len(ret) == 1) :
+            return ret[0]
+        return ret

@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "TI TCA6408A",
+    "extensions": {
+        "TI TCA6408A": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.TI_TCA6408A"
+        }
+    }
+}

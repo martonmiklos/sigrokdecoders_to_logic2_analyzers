@@ -5,13 +5,39 @@ from pd import Decoder
 class {{ entryName }}():
   def __init__(self):
     self.sigrokDecoder = Decoder()
-    pass
 
   def get_capabilities(self):
-    pass
+    settings =  {}
+    for options in self.sigrokDecoder.options :
+        resultTypes[annotation[0]] = annotation[1] + "{{data.data}}"
+    return {
+        'settings': settings
+        {
+
+            'First Setting Label': {
+                'type': 'string'
+            },
+            'Another Setting': {
+                'type': 'number',
+                'minimum': 1E-6,
+                'maximum': 1E4
+            },
+            'Pick one of the following': {
+                'type': 'choices',
+                'choices': ('Option A', 'Option B')
+            }
+        }
+    }
 
   def set_settings(self, settings):
-    pass
+    # TODO handle the settings
+    self.sigrokDecoder.reset()
+    resultTypes = {}
+    for annotation in self.sigrokDecoder.annotations :
+        resultTypes[annotation[0]] = annotation[1] + "{{data.data}}"
+    return {
+        "result_types": resultTypes
+    }
 
   def decode(self, data):
     {{ decodeBody }}

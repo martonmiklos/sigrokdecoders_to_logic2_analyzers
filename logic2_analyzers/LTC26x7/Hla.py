@@ -8,7 +8,11 @@ class LTC26x7():
     pass
 
   def get_capabilities(self):
-    pass
+    return {
+      "result_types": {
+          
+      }
+    }
 
   def set_settings(self, settings):
     pass

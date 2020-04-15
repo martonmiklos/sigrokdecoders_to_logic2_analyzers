@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "ADF435x",
+    "extensions": {
+        "ADF435x": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.ADF435x"
+        }
+    }
+}

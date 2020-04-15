@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "MRF24J40",
+    "extensions": {
+        "MRF24J40": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.MRF24J40"
+        }
+    }
+}

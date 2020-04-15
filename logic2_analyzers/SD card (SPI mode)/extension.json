@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "SD card (SPI mode)",
+    "extensions": {
+        "SD card (SPI mode)": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.SD_card_(SPI_mode)"
+        }
+    }
+}

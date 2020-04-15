@@ -1,0 +1,12 @@
+{
+    "version": "0.0.1",
+    "apiVersion": "1.0.0",
+    "author": "sigrok2logic converter",
+    "name": "LM75",
+    "extensions": {
+        "LM75": {
+            "type": "HighLevelAnalyzer",
+            "entryPoint": "Hla.LM75"
+        }
+    }
+}
