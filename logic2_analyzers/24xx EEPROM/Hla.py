@@ -7,6 +7,7 @@ from pd import Decoder
 class _24xx_EEPROM():
   def __init__(self):
     self.sigrokDecoder = Decoder()
+    self.packets = []
 
   def get_capabilities(self):
     settings =  {}
@@ -43,16 +44,17 @@ class _24xx_EEPROM():
     self.sigrokDecoder.reset()
     resultTypes = {}
     for annotation in self.sigrokDecoder.annotations :
-
-        resultTypes[annotation[0]] = annotation[1] + "{{data.data}}"
+        resultTypes[annotation[0]] = {
+            "format": annotation[1] + "{{data.data}}"
+        }
 
     return {
         "result_types": resultTypes
     }
 
   def decode(self, data):
-    self.sigrokDecoder.processI2C(data)
-    if (not self.packet == {}) :
+    self.sigrokDecoder.processLogicDataI2C(data)
+    if (not self.packets == []) :
         ret = self.generate_logic_result()
-        self.packet = {}
+        self.packets = []
         return ret

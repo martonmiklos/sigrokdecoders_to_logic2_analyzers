@@ -58,7 +58,7 @@ def generateDecoderWrapper(decoder, type, outputDir, sourcefile):
         with open(os.path.join(decoderDir, "Hla.py"), 'w') as hlapy:
             hlapy.write(template.render(
                 entryName=entryPointName,
-                decodeBody="self.sigrokDecoder.process" + type.upper() + "(data)"
+                decodeBody="self.sigrokDecoder.processLogicData" + type.upper() + "(data)"
             ))
 
 

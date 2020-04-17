@@ -7,6 +7,7 @@ from pd import Decoder
 class {{ entryName }}():
   def __init__(self):
     self.sigrokDecoder = Decoder()
+    self.packets = []
 
   def get_capabilities(self):
     settings =  {}
@@ -43,7 +44,9 @@ class {{ entryName }}():
     resultTypes = {}
     for annotation in self.sigrokDecoder.annotations :
 {% raw %}
-        resultTypes[annotation[0]] = annotation[1] + "{{data.data}}"
+        resultTypes[annotation[0]] = {
+            "format": annotation[1] + "{{data.data}}"
+        }
 {% endraw %}
     return {
         "result_types": resultTypes
