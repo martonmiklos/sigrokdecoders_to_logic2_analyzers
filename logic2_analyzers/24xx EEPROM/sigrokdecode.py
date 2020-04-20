@@ -55,9 +55,17 @@ class Decoder:
         elif (logicData["type"] == "stop"):
             sigrokData = ["STOP", None]
         elif (logicData["type"] == "address"):
-            sigrokData = ["ADDRESS READ", logicData["data"]["address"]]
+            self.decode(logicData["start_time"], logicData["end_time"], ["BITS", logicData["data"]["address"]])
+            sigrokType = "ADDRESS WRITE"
+            if (int.from_bytes(logicData["data"]["address"], byteorder='big') & 0b1):
+                sigrokType = "ADDRESS READ"
+            sigrokData = [sigrokType, logicData["data"]["address"]]
         elif (logicData["type"] == "data"):
-            sigrokData = ["DATA READ", logicData["data"]["data"]]
+            self.decode(logicData["start_time"], logicData["end_time"], ["BITS", logicData["data"]["data"]])
+            sigrokType = "DATA WRITE"
+            if (int.from_bytes(logicData["data"]["data"], byteorder='big') & 0b1) :
+                sigrokType = "DATA READ"
+            sigrokData = [sigrokType, logicData["data"]["data"]]
         else:
             return
         self.decode(logicData["start_time"], logicData["end_time"], sigrokData)
