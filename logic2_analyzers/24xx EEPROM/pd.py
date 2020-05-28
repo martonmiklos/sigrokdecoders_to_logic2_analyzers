@@ -416,6 +416,7 @@ class Decoder(srd.Decoder):
             self.reset_variables()
 
     def decode(self, ss, es, data):
+        print(data)
         self.cmd, self.databyte = data
 
         # Collect the 'BITS' packet, then return. The next packet is

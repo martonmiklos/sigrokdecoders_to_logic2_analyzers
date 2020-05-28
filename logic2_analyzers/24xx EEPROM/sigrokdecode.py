@@ -49,26 +49,68 @@ class Decoder:
         self.decode(logicData["start_time"], logicData["end_time"], sigrokData)
 
     def processLogicDataI2C(self, logicData):
-        sigrokData = []
+        '''
+        OUTPUT_PYTHON format:
+
+        Packet:
+        [<ptype>, <pdata>]
+
+        <ptype>:
+         - 'START' (START condition)
+         - 'START REPEAT' (Repeated START condition)
+         - 'ADDRESS READ' (Slave address, ['Read', 'Rd', 'R'])
+         - 'ADDRESS WRITE' (Slave address, ['Write', 'Wr', 'W'])
+         - 'DATA READ' (Data, read)
+         - 'DATA WRITE' (Data, write)
+         - 'STOP' (STOP condition)
+         - 'ACK' (ACK bit)
+         - 'NACK' (NACK bit)
+         - 'BITS' (<pdata>: list of data/address bits and their ss/es numbers)
+
+        <pdata> is the data or address byte associated with the 'ADDRESS*' and 'DATA*'
+        command. Slave addresses do not include bit 0 (the READ/WRITE indication bit).
+        For example, a slave address field could be 0x51 (instead of 0xa2).
+        For 'START', 'START REPEAT', 'STOP', 'ACK', and 'NACK' <pdata> is None.
+
+        For address or data the order is:
+
+        Store individual bits and their start/end samplenumbers.
+        In the list, index 0 represents the LSB (I²C transmits MSB-first).
+        We have the bit times ss/es of the Logicdata
+        self.putp(['BITS', self.bits]) bits are present here individually with ss/es
+
+        self.putp([cmd, d]) cmd is the ptype string ("ADDRESS/DATA READ/WRITE")
+
+        self.putb([bin_class, bytes([d])])
+
+        for bit in self.bits:
+            self.put(bit[1], bit[2], self.out_ann, [5, ['%d' % bit[0]]])
+
+
+        '''
+        print(logicData)
         if (logicData["type"] == "start"):
-            sigrokData = ["START", None]
+            self.decode(logicData["start_time"], logicData["end_time"], ["START", None])
         elif (logicData["type"] == "stop"):
-            sigrokData = ["STOP", None]
+            self.decode(logicData["start_time"], logicData["end_time"], ["STOP", None])
+        elif (logicData["type"] == "ack"):
+            self.decode(logicData["start_time"], logicData["end_time"], ["ACK", None])
+        elif (logicData["type"] == "nack"):
+            self.decode(logicData["start_time"], logicData["end_time"], ["NACK", None])
         elif (logicData["type"] == "address"):
-            self.decode(logicData["start_time"], logicData["end_time"], ["BITS", logicData["data"]["address"]])
             sigrokType = "ADDRESS WRITE"
             if (int.from_bytes(logicData["data"]["address"], byteorder='big') & 0b1):
                 sigrokType = "ADDRESS READ"
-            sigrokData = [sigrokType, logicData["data"]["address"]]
+            self.decode(logicData["start_time"], logicData["end_time"], [sigrokType, logicData["data"]["address"]])
+            return
         elif (logicData["type"] == "data"):
-            self.decode(logicData["start_time"], logicData["end_time"], ["BITS", logicData["data"]["data"]])
             sigrokType = "DATA WRITE"
             if (int.from_bytes(logicData["data"]["data"], byteorder='big') & 0b1) :
                 sigrokType = "DATA READ"
-            sigrokData = [sigrokType, logicData["data"]["data"]]
-        else:
+            self.decode(logicData["start_time"], logicData["end_time"], [sigrokType, logicData["data"]["data"]])
+            self.decode(logicData["start_time"], logicData["end_time"], ["BITS", logicData["data"]["data"]])
             return
-        self.decode(logicData["start_time"], logicData["end_time"], sigrokData)
+        return
 
     def processLogicDataUART(self, logicData):
         sigrokData = []
